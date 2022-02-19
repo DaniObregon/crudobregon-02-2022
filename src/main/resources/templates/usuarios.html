@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/table/owl.carousel.min_table.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/table/bootstrap.min_table.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/table/style_table.css">
+    <link rel="stylesheet" href="css/navbarStyle.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <title>Listado de usuarios</title>
+</head>
+<body>
+
+<header>
+    <nav class="main-nav">
+        <input type="checkbox" id="isChecked"/>
+        <label for="isChecked" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="index.html" class="logo">OBREGON Software</a>
+        <ul class="navlinks">
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#" class="contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+    <div class="container">
+        <h2 class="mb-5">Datos de usuarios</h2>
+        <a th:href="@{/new}" class="new-button" style="color:#F2F3F4">Nuevo</a>
+        <br/>
+        <div class="table-responsive">
+            <table class="table table-striped custom-table"><!--id="usuarios"-->
+                <br/>
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="usuario:${usuarios}">
+                    <!--nombre con el que estamos enviando toda la lista desde el controlador-->
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nombre}"></td>
+                    <td th:text="${usuario.apellido}"></td>
+                    <td th:text="${usuario.email}"></td>
+                    <td th:text="${usuario.telefono}"></td>
+                    <td>
+                        <a th:href="@{/editar/} + ${usuario.id}" class="edit-button" style="color:#F2F3F4">EDIT</a>
+<!--                        <a th:href="@{/eliminar/} + ${usuario.id}" class="delete-button" style="color:#F2F3F4">DELETE</a>-->
+                        <a th:onclick="eliminar([[${usuario.id}]])" class="delete-button" style="color:#F2F3F4" type="button">DELETE</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/funciones.js"></script>
+<!--
+<script src="js/table/jquery-3.3.1.min.js"></script>
+<script src="js/table/popper.min.js"></script>
+<script src="js/table/bootstrap.min.js"></script>
+<script src="js/table/main.js"></script>
+<script src="js/usuarios.js"></script>
+-->
+</body>
+</html>
